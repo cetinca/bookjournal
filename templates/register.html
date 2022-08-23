@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main_block %}
+<form class="form" method="post" name="login">
+    <div class="form__container">
+        {{ form.hidden_tag() }}
+        {{ form.email(class_="form__field", placeholder="email@email.com") }}
+        {{ form.password(class="form__field", placeholder="password") }}
+        {{ form.confirm(class="form__field", placeholder="confirm") }}
+        {{ form.submit(class_="form__button") }}
+    </div>
+</form>
+{% endblock %}

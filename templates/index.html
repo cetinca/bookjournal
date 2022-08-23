@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block main_block %}
+<section class="dates">
+    {% for date in dates %}
+    <div class="date">
+    <a class="date__link" href="{{ url_for('books.index', date=date) }}" methods="post">{{ date }}</a>
+    <p class="date__pages {{ 'date__pages-zero' if daily_pages.get(date, '0') == '0' else '' }}">{{ daily_pages.get(date, 0) }}</p>
+    </div>
+    {% endfor %}
+</section>
+<section class="books">
+    {% for item in books %}
+    <p class="book"><span>{{ item.get("book") }}</span><span>{{ item.get("date") }}</span></p>
+    {% endfor %}
+</section>
+{% endblock %}

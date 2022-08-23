@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css' ) }}">
+</head>
+<body class="body">
+<header class="header">
+    <section class="navigation">
+    <div class="logo"><p class="logo__name">Book Journal</p></div>
+    <div class="navbar">
+        <a class="navbar__link" href="{{ url_for('books.index') }}">Home</a>
+        <a class="navbar__link" href="{{ url_for('books.add_book') }}">Add Book</a>
+        <a class="navbar__link" href="{{ url_for('books.add_pages') }}">Add Pages</a>
+        <a class="navbar__link" href="{{ url_for('books.login') }}">Login</a>
+        <a class="navbar__link" href="{{ url_for('books.logout') }}">Logout</a>
+        <a class="navbar__link" href="{{ url_for('books.register') }}">Register</a>
+    </div>
+    </section>
+</header>
+<main class="main"> {% block main_block %}{% endblock %} </main>
+<footer class="footer"><p class="footer__text">made by cetin 2022</p></footer>
+</body>
+</html>

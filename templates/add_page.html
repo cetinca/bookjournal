@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block main_block %}
+<form class="form" method="post" name="login">
+    <div class="form__container">
+        {{ form.hidden_tag() }}
+        {{ form.page(class_="form__field", placeholder="Add page") }}
+        {{ form.date(class="form__field", placeholder="Add date") }}
+        {{ form.submit(class_="form__button") }}
+    </div>
+</form>
+{% endblock %}

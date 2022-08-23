@@ -1,0 +1,114 @@
+.body {
+ font-family: "Roboto", sans-serif;
+ font-size: 16px;
+}
+
+.header {
+max-width: 40rem;
+margin: 16px auto;
+border-radius: 2px;
+}
+
+.navigation {
+background-color: #1D3557;
+color: #F1FAEE;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+border-radius: 2px;
+}
+
+.logo__name {
+margin-left: 10px;
+}
+
+.navbar__link {
+text-decoration: none;
+color: inherit;
+padding: 0 10px 10px 0;
+}
+
+.navbar__link:hover {
+color: #A8DADC;
+transition: color 0.2s ease-in;
+}
+
+.main {
+max-width: 40rem;
+min-height: 75vh;
+margin: 16px auto;
+}
+
+.dates {
+margin-top: 16px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
+.date {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.date__link {
+text-decoration: none;
+color: #457B9D;
+font-size: 0.9rem;
+}
+
+.date__pages {
+text-decoration: none;
+color: #457B9D;
+font-size: 0.8rem;
+}
+
+.date__pages-zero {
+color: #E63946;
+}
+
+.form__container {
+margin: 16px auto;
+display: flex;
+width: 16rem;
+flex-direction: column;
+}
+
+.form__field {
+margin-top: 6px;
+width: inherit;
+align-self: flex-start;
+}
+
+.form__button {
+margin-top: 6px;
+align-self: flex-end;
+padding: 0 6px;
+}
+
+.book {
+max-width: 20rem;
+margin: 3px auto;
+font-size: 0.9rem;
+color: #1D3557;
+display: flex;
+justify-content: space-between;
+}
+
+.footer {
+max-width: 40rem;
+height: 1.5rem;
+margin: 16px auto;
+background-color: #1D3557;
+color: #F1FAEE;
+border-radius: 2px;
+}
+
+.footer__text {
+margin-right: 10px;
+line-height: 1.5rem;
+font-size: 0.6rem;
+text-align: right;
+vertical-align: middle;
+}
