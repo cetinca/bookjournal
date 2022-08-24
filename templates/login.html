@@ -7,6 +7,7 @@
         {{ form.email(class_="form__field", placeholder="email@email.com") }}
         {{ form.password(class="form__field", placeholder="password") }}
         {{ form.submit(class_="form__button") }}
+        <p>Don't have an account, <a class="form__container-link" href="{{ url_for('books.register') }}">register!</a></p>
     </div>
 </form>
 {% endblock %}

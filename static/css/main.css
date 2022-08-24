@@ -87,6 +87,18 @@ align-self: flex-end;
 padding: 0 6px;
 }
 
+.form__container-link {
+text-decoration: none;
+color: #E63946;
+padding: 0 10px 10px 0;
+}
+
+.form__container-link:hover {
+color: #E63946;
+opacity: 0.7;
+transition: opacity 0.2s ease-in;
+}
+
 .book {
 max-width: 20rem;
 margin: 3px auto;

@@ -15,9 +15,11 @@
         <a class="navbar__link" href="{{ url_for('books.index') }}">Home</a>
         <a class="navbar__link" href="{{ url_for('books.add_book') }}">Add Book</a>
         <a class="navbar__link" href="{{ url_for('books.add_pages') }}">Add Pages</a>
+        {% if not session.get("email") %}
         <a class="navbar__link" href="{{ url_for('books.login') }}">Login</a>
+        {% else %}
         <a class="navbar__link" href="{{ url_for('books.logout') }}">Logout</a>
-        <a class="navbar__link" href="{{ url_for('books.register') }}">Register</a>
+        {% endif %}
     </div>
     </section>
 </header>

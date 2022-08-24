@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, SubmitField, EmailField, DateField, StringField
-from wtforms.validators import InputRequired, Email, Length, EqualTo
+from wtforms import PasswordField, SubmitField, EmailField, DateField, StringField, IntegerField
+from wtforms.validators import InputRequired, Email, Length, EqualTo, NumberRange
 
 
 class LoginForm(FlaskForm):
@@ -12,8 +12,12 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     email = EmailField("Email", validators=[InputRequired(), Email()])
     password = PasswordField(
-        'Password', [InputRequired(), Length(4, 20),
-                     EqualTo('confirm', message='Passwords must match')])
+        'Password',
+        validators=[
+            InputRequired(), Length(4, 20),
+            EqualTo('confirm',
+                    message='Passwords must match')
+        ])
     confirm = PasswordField('Repeat Password')
     submit = SubmitField("Register")
 
@@ -25,6 +29,10 @@ class AddBook(FlaskForm):
 
 
 class AddPages(FlaskForm):
-    page = StringField("Page", validators=[InputRequired()])
+    page = IntegerField("Page",
+                        validators=[
+                            InputRequired(),
+                            NumberRange(min=0, max=999, message="Type a number between 1-999")
+                        ])
     date = DateField("Date", validators=[InputRequired()])
     submit = SubmitField("Add pages")
