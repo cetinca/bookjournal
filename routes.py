@@ -3,11 +3,13 @@ import functools
 import uuid
 from dataclasses import asdict
 
-from flask import Blueprint, render_template, session, redirect, url_for, request, make_response, current_app
+from flask import Blueprint, render_template, session, redirect, url_for, request, make_response, current_app, flash
 from passlib.hash import pbkdf2_sha256
 
 from forms import LoginForm, RegisterForm, AddBook, AddPages
+from mail_token import generate_confirmation_token, confirm_token
 from models import User
+from mail_sender import send_email
 
 pages = Blueprint("books", __name__, template_folder="templates", static_folder="static")
 
@@ -94,11 +96,37 @@ def register():
             _id=uuid.uuid4().hex,
             email=form.email.data,
             password=pbkdf2_sha256.hash(form.password.data),
+            confirmed=False,
+            confirmed_on=None
         )
 
         current_app.db.user.insert_one(asdict(user))
+        token = generate_confirmation_token(user.email)
+        confirm_url = url_for('books.confirm_email', token=token, _external=True)
+        html = render_template('activate.html', confirm_url=confirm_url)
+        subject = "Please confirm your email"
+        send_email(user.email, subject, html)
+        flash('A confirmation email has been sent via email.', 'success')
         return redirect(url_for("books.login"))
     return render_template("register.html", title="Register form", form=form)
+
+
+@pages.route('/confirm/<token>')
+def confirm_email(token):
+    try:
+        email = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or has expired.', 'danger')
+    user = User(**current_app.db.user.find_one({"email": email}))
+    if user.confirmed:
+        flash('Account already confirmed. Please login.', 'success')
+    else:
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+        current_app.db.user.update_one({"email": email},
+                                       {"$set": {"confirmed": user.confirmed, "confirmed_on": user.confirmed_on}})
+        flash('You have confirmed your account. Thanks!', 'success')
+    return redirect(url_for('books.index'))
 
 
 @pages.route("/logout", methods=["GET"])
